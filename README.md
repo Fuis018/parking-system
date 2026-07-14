@@ -27,7 +27,7 @@ parking/
 
 ```bash
 cd java
-mvn compile exec:java -Dexec.mainClass="ucv.parking.App" -Dexec.args="--api-only"
+mvn compile exec:java "-Dexec.mainClass=ucv.parking.App" "-Dexec.args=--api-only"
 ```
 
 Esto inicia el servidor en `http://localhost:8080` sin la consola interactiva.
