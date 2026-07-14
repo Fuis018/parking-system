@@ -27,6 +27,10 @@ parking/
 
 ```bash
 cd java
+
+# Crear el .jar
+mvn package -DskipTests
+
 mvn compile exec:java "-Dexec.mainClass=ucv.parking.App" "-Dexec.args=--api-only"
 ```
 
