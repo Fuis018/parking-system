@@ -9,7 +9,7 @@
     "build": "pnpm build:jar && tsc && vite build",
     "preview": "vite preview",
     "tauri": "tauri",
-    "bundle:tar": "VER=$(node -p \"require('./package.json').version\") && mkdir -p src-tauri/target/release/bundle/tar_tmp && cp src-tauri/target/release/frontend src-tauri/target/release/bundle/tar_tmp/ && strip src-tauri/target/release/bundle/tar_tmp/frontend 2>/dev/null && cp ../java/target/parking.jar src-tauri/target/release/bundle/tar_tmp/ && cd src-tauri/target/release/bundle/tar_tmp && tar czf ../frontend-${VER}_amd64.tar.gz frontend parking.jar && cd .. && rm -rf tar_tmp && echo \"Created: frontend-${VER}_amd64.tar.gz\"",
+    "bundle:tar": "powershell -Command \"$VER = (Get-Content package.json | ConvertFrom-Json).version; New-Item -ItemType Directory -Force src-tauri/target/release/bundle/tar_tmp; Copy-Item src-tauri/target/release/frontend.exe src-tauri/target/release/bundle/tar_tmp/frontend.exe; Copy-Item ../java/target/parking.jar src-tauri/target/release/bundle/tar_tmp/; Set-Location src-tauri/target/release/bundle/tar_tmp; tar -czf ../frontend-$VER`__amd64.tar.gz frontend.exe parking.jar; Set-Location ..; Remove-Item -Recurse -Force tar_tmp; Write-Output 'Created: frontend-'$VER'_amd64.tar.gz'\"",
     "bundle": "pnpm tauri build && pnpm bundle:tar"
   },
   "dependencies": {
